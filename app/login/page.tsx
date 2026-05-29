@@ -14,25 +14,32 @@ import { Label } from "@/components/ui/label"
 import { useState } from "react"
 import { authClient } from "@/lib/auth-client"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 export default function Login() {
+    const router = useRouter();
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         try{
-            const{data,error} = await authClient.signIn.email({
+            const { data, error } = await authClient.signIn.email({
                 email,
                 password,
                 callbackURL: "/dashboard"
             },{
                 onSuccess: () => {
-                    console.log(`successfull login by ${email}`)
+                    console.log(`successfull login by ${email}`);
+                    router.push("/dashboard");
+                    router.refresh();
+                },
+                onError: (ctx) => {
+                    alert(ctx.error.message || "Invalid email or password");
                 }
             },)
         }catch(error){
-            console.error(`error in login`)
+            console.error(`error in login`, error)
         }
     }
    
@@ -47,7 +54,7 @@ export default function Login() {
             </CardDescription>
             <CardAction>
               <Link href="/signup" passHref legacyBehavior>
-                <Button variant="link">Sign Up</Button>
+                <Button type="button" variant="link">Sign Up</Button>
               </Link>
             </CardAction>
           </CardHeader>

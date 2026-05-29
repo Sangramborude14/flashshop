@@ -42,28 +42,6 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-black text-white p-4">
-      <Card className="w-full max-w-md bg-zinc-900 border-zinc-800 text-white">
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold">Welcome to FlashShop</CardTitle>
-          <CardDescription className="text-zinc-400">
-            You are logged in as {session.user.name}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="space-y-2 text-sm text-zinc-300">
-            <p><strong>Email:</strong> {session.user.email}</p>
-            <p><strong>User ID:</strong> {session.user.id}</p>
-          </div>
-          <Button 
-            variant="destructive" 
-            className="w-full mt-4"
-            onClick={handleSignOut}
-          >
-            Sign Out
-          </Button>
-        </CardContent>
-      </Card>
-    </div>
+    <h1>this is the dashboard page</h1>
   )
 }

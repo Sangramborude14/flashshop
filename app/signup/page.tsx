@@ -14,8 +14,10 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 export default function SignUp() {
+  const router = useRouter()
   const [email, setEmail] = useState("")
   const [name, setName] = useState("")
   const [password, setPassword] = useState("")
@@ -35,11 +37,16 @@ export default function SignUp() {
         password,
         name,
         callbackURL: "/dashboard"
+      }, {
+        onSuccess: () => {
+          console.log("Successfully registered")
+          router.push("/dashboard")
+          router.refresh()
+        },
+        onError: (ctx) => {
+          alert(ctx.error.message || "Something went wrong during signup.")
+        }
       })
-
-      if (error) {
-        alert(error.message || "Something went wrong during signup.")
-      }
     } catch (err) {
       console.error("Error retrieving data from backend", err)
     }
@@ -56,7 +63,7 @@ export default function SignUp() {
             </CardDescription>
             <CardAction>
               <Link href="/login" passHref legacyBehavior>
-                <Button variant="link">Login</Button>
+                <Button type="button" variant="link">Login</Button>
               </Link>
             </CardAction>
           </CardHeader>
