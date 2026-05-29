@@ -40,3 +40,29 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "internal server error" }, { status: 500 })
     }
 }
+export async function GET(request : Request,{params}: { params: Promise<{email: string}>}){
+    
+    try{
+        const {email} = await params
+        const decodedEmail = decodeURIComponent(email);
+
+        const user = await prisma.user.findUnique({
+            where: {email: decodedEmail},
+            include: {
+                cartItems: {
+                    include: {
+                        item: true,
+                    }
+                }
+            }
+        })
+
+        if(!user){
+            return NextResponse.json({error: "user not found"},{status:404})
+        }
+        return NextResponse.json(user.cartItems)
+    }catch(error){
+        console.error("error fetching cart items: ",error)
+        return NextResponse.json({error: "Internal server error"},{status: 500})
+    }
+}

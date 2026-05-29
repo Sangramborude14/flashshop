@@ -71,7 +71,7 @@ export default function DashboardDetailPage({ params }: PageProps) {
       Add to Cart 🛒
       </button>
    
-    <Link href={`${email}/cart`} className="block">
+    <Link href={`/${email}/cart`} className="block">
     <button className=" border bg-gray-50 p-2 mb-4 font-semibold hover:bg-green-200 hover:font-extralight hover:text-xl hover:border-black transition-all duration-300 ">
       View Cart 
     </button>
