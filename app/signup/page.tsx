@@ -22,6 +22,7 @@ export default function SignUp() {
   const [name, setName] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [role,setRole] = useState("BUYER");
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -36,6 +37,7 @@ export default function SignUp() {
         email,
         password,
         name,
+        role: role,
         callbackURL: "/dashboard"
       }, {
         onSuccess: () => {

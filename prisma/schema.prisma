@@ -11,6 +11,11 @@ datasource db {
   provider = "postgresql"
 }
 
+enum UserRole {
+  BUYER
+  SELLER
+}
+
 model User {
   id            String    @id
   name          String
@@ -21,6 +26,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
+  role          UserRole @default(BUYER)
 
   @@unique([email])
   @@map("user")
@@ -72,4 +78,14 @@ model Verification {
 
   @@index([identifier])
   @@map("verification")
+}
+
+model Item {
+  id  String  @id
+  name  String
+  category String?
+  price String
+  details String?
+  hostName String
+  image String? @default("@/public/default_cart.png")
 }
