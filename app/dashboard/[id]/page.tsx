@@ -30,13 +30,19 @@ export default function DashboardDetailPage({ params }: PageProps) {
 
     const handleCart = async () => {
       try{
+        const {id} =  await params;
         const res = await fetch(`/api/${email}`,{
           method: "POST",
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify({
-            email
+            id,
+            email,
           })
         })
+
+        if(!res.ok){
+          throw new Error(`failed to add item to cart`)
+        }
       }catch(error){
          console.error(`error adding to cart`)
          alert(`failed to add to cart`)
