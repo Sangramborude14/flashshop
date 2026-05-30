@@ -64,8 +64,9 @@ export default function Dashboard() {
         <h1 className="bg-light-400 p-4 text-center text-6xl uppercase text-violet-600 ">DashBoard</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
         {items.map((item: any) => (
-          <Link href={`/dashboard/${item.id}`}>
+         
           <div key={item.id} id={item.id} className="flex flex-col bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-slate-300">
+             <Link href={`/dashboard/${item.id}`}>
             <span className="font-semibold text-base text-slate-800 line-clamp-2 text-center">
               {item.name}
               </span>
@@ -75,8 +76,8 @@ export default function Dashboard() {
             <div className="text-lg font-bold text-light-900 mt-2 mx-8">
               $:{item.price}
               </div>
+              </Link>
           </div>
-          </Link>
         ))}
       </div>
     </div>
