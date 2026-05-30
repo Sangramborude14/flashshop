@@ -14,7 +14,7 @@ export default function PageContainer({children,title,description,className}: Pa
                 {(title || description) && (
                     <div className="flex flex-col gap-2 border-b border-zinc-800 pb-6">
                         {title && (
-                            <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-zinc-100 to-zinc-400 bg-clip-text text-transparent">
+                            <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight bg-linear-to-r from-zinc-100 to-zinc-400 bg-clip-text text-transparent">
                                 {title}
                             </h1>
                         )}

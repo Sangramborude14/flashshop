@@ -61,28 +61,34 @@ export default function Dashboard() {
 
   return (
     <>
-    <PageContainer>
-      <div className="min-h-screen bg-slate-50 text-slate-900 p-8">
-        <h1 className="bg-light-400 p-4 text-center text-6xl uppercase text-violet-600 ">DashBoard</h1>
+    <PageContainer title="DashBoard" description="Browse and purchase items on FlashShop">
+     
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
         {items.map((item: any) => (
          
-          <div key={item.id} id={item.id} className="flex flex-col bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-slate-300">
-             <Link href={`/dashboard/${item.id}`}>
-            <span className="font-semibold text-base text-slate-800 line-clamp-2 text-center">
-              {item.name}
-              </span>
-            {item.image && (
-              <img src={item.image} alt={item.name} className="w-full aspect-square bg-slate-100 overflow-hidden relative" />
-            )}
-            <div className="text-lg font-bold text-light-900 mt-2 mx-8">
-              $:{item.price}
-              </div>
+                   <div key={item.id} id={item.id} className="flex flex-col bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-zinc-750">
+             <Link href={`/dashboard/${item.id}`} className="flex flex-col h-full">
+               
+               {/* Product Image */}
+               {item.image && (
+                 <img src={item.image} alt={item.name} className="w-full aspect-square bg-zinc-950 object-cover border-b border-zinc-800" />
+               )}
+
+               {/* Text details padded inside card */}
+               <div className="p-4 flex flex-col gap-2 flex-1 justify-between">
+                 <span className="font-semibold text-base text-zinc-100 line-clamp-2">
+                   {item.name}
+                 </span>
+                 <div className="text-lg font-bold text-violet-400">
+                   ${item.price}
+                 </div>
+               </div>
+               
               </Link>
           </div>
+
         ))}
       </div>
-    </div>
     </PageContainer>
     </>
   )
