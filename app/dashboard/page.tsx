@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
+import PageContainer from "@/components/PageContainer"
 
 
 
@@ -60,7 +61,8 @@ export default function Dashboard() {
 
   return (
     <>
-    <div className="min-h-screen bg-slate-50 text-slate-900 p-8">
+    <PageContainer>
+      <div className="min-h-screen bg-slate-50 text-slate-900 p-8">
         <h1 className="bg-light-400 p-4 text-center text-6xl uppercase text-violet-600 ">DashBoard</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
         {items.map((item: any) => (
@@ -81,6 +83,7 @@ export default function Dashboard() {
         ))}
       </div>
     </div>
+    </PageContainer>
     </>
   )
 }
