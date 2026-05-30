@@ -3,6 +3,7 @@ import { use, useEffect, useState } from "react"
 import { authClient } from "@/lib/auth-client"
 import prisma from "@/lib/db";
 import { userAgent } from "next/server";
+import Link from "next/link";
 
 interface PageProps {
   params: Promise<{email:string}>
@@ -36,10 +37,10 @@ const totalPrice = cartItems.reduce(
   (sum,cartItems) => sum + parseFloat(cartItems.item.price) * cartItems.quantity,0
 )
 
-if(loading){
+if(!loading){
   return(
     <div>
-      <h1>
+      <h1 className="p-3 text-4xl m-4 text-center uppercase">
         Your cart items
       </h1>
       <div>
@@ -69,16 +70,13 @@ if(loading){
               </div>
             ))}
       </div>
+      <Link href={`/${email}/billing`}>
+      <button className="flex p-3 my-8 mx-2 border hover:bg-black hover:text-white">
+        BUY
+      </button>
+      </Link>
       </div>
 
   )
 }
-
-  return (
-    <div className="p-8 text-white bg-black min-h-screen">
-      <h1 className="text-3xl font-bold">Your Cart</h1>
-      <p className="mt-2 text-zinc-400">Cart page placeholder.</p>
-      
-    </div>
-  )
 }
