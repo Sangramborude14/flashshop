@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Switch } from "@/components/ui/switch"
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -118,6 +119,21 @@ export default function SignUp() {
                   required
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+              </div>
+              <div className="flex items-center justify-between border p-3 rounded-lg bg-zinc-950/40 border-zinc-800/80">
+                <div className="flex flex-col gap-0.5">
+                  <Label htmlFor="role-switch" className="font-semibold text-zinc-200">
+                    Register as a Seller
+                  </Label>
+                  <span className="text-[11px] text-zinc-400">
+                    Toggle this on if you want to host and sell items.
+                  </span>
+                </div>
+                <Switch
+                  id="role-switch"
+                  checked={role === "SELLER"}
+                  onCheckedChange={(checked) => setRole(checked ? "SELLER" : "BUYER")}
                 />
               </div>
             </div>
